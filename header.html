@@ -1,0 +1,35 @@
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">✦ <strong>Zentegix Best</strong></a>
+
+    <div class="search-wrapper" role="search">
+      <input id="globalSearch" placeholder="Search products, notes, courses..." aria-label="Search" type="text">
+      <button onclick="document.getElementById('globalSearch') && renderProducts(document.getElementById('globalSearch').value)" class="btn btn-primary">Search</button>
+    </div>
+
+    <nav class="nav" aria-label="Main Navigation">
+      <a href="about.html" title="About">
+        <!-- About icon -->
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM11 11v5h2v-5h-2zm0-6h2v4h-2V5z" fill="currentColor"/></svg>
+        <span>About</span>
+      </a>
+      <a href="login.html" title="Sign In">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zM4 20a8 8 0 0116 0v1H4v-1z" fill="currentColor"/></svg>
+        <span>Sign In</span>
+      </a>
+      <a href="faq.html" title="Help">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm1.07-7.75l-.9.92A1.5 1.5 0 0013 12v1h-2v-1c0-1 .45-1.5 1.07-2.17l1.2-1.23A2.5 2.5 0 0011.5 5a2.5 2.5 0 00-2.5 2.5H7A4.5 4.5 0 0111.5 3 4.5 4.5 0 0116 7.5c0 1.2-.54 1.96-1.93 3.75z" fill="currentColor"/></svg>
+        <span>Help</span>
+      </a>
+      <a href="https://www.linkedin.com/in/akash-negi-69175933a" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3A2 2 0 0121 5v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 17V10.75H6.12V17h2.22zM7.23 9.73a1.15 1.15 0 110-2.3 1.15 1.15 0 010 2.3zM18 17v-3.5c0-1.82-1-2.67-2.32-2.67-1.07 0-1.54.6-1.8 1.02V10.75H11.6c.03.72 0 6.25 0 6.25h2.22v-3.48c0-.19.01-.38.07-.52.15-.38.48-.77 1.04-.77.73 0 1.02.58 1.02 1.43V17H18z" fill="currentColor"/></svg>
+        <span>LinkedIn</span>
+      </a>
+      <a class="cart-badge" href="cart.html" title="Cart">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M7 4h-2l-1 2h2l3.6 7.59-1.35 2.44A1 1 0 0010 18h8v-2H11.42a.25.25 0 01-.23-.15L12.1 15h5.45a1 1 0 00.92-.62l1.58-4.07A1 1 0 0019 8H7.42" fill="currentColor"/></svg>
+        <span id="headerCartCount">0</span>
+      </a>
+    </nav>
+  </div>
+</header>
+

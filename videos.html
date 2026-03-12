@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Videos - Zentegix</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0f1a;--bg2:#141b2a;--card:#1a2235;--accent:#49c6ff;--accent2:#7367ff;--muted:#a8b5cc}
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg),var(--bg2));color:#eef2ff;min-height:100vh;padding-top:80px}
+    .navbar{position:fixed;top:0;left:0;right:0;background:rgba(10,15,26,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.05);padding:16px 28px;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+    .navbar-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:20px;font-weight:700;background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-link{color:var(--muted);text-decoration:none;font-weight:500;transition:all 0.2s;margin:0 12px}
+    .nav-link:hover{color:#eef2ff}
+    a{color:var(--accent);text-decoration:none;transition:all 0.2s}
+    a:hover{color:#eef2ff;text-decoration:underline}
+    .container{max-width:1200px;margin:0 auto;padding:40px 28px}
+    .hero{text-align:center;margin-bottom:40px}
+    .hero h1{font-size:42px;font-weight:700;margin:0 0 12px;background:linear-gradient(135deg,#eef2ff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{color:var(--muted);font-size:16px;margin:0}
+    section{margin-bottom:48px;background:linear-gradient(135deg,rgba(26,34,53,0.8),rgba(26,34,53,0.5));border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;transition:all 0.3s}
+    section:hover{border-color:rgba(73,198,255,0.3);box-shadow:0 20px 40px rgba(73,198,255,0.1)}
+    h2{font-size:24px;margin:0 0 16px;color:#eef2ff}
+    iframe{width:100%;height:320px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:#000}
+    section p{color:var(--muted);margin:16px 0 0}
+    footer{text-align:center;color:var(--muted);font-size:13px;padding:20px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.05)}
+    @media (max-width:768px){.hero h1{font-size:28px} iframe{height:220px}}
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo" style="text-decoration:none;cursor:pointer">🎥 Zentegix</a>
+      <div style="margin-left:auto">
+        <a href="cart.html" class="btn primary" style="text-decoration:none">🛒 Cart (<span id="cartCount">0</span>)</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero">
+      <h1>🎥 Video Playlists</h1>
+      <p>Learn from expertly curated video lessons for every class</p>
+    </div>
+    
+    <section id="class9">
+      <h2>Class 9 Playlist</h2>
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Class 9 playlist"></iframe>
+      <p>Master fundamental concepts with our comprehensive Class 9 video series</p>
+    </section>
+
+    <section id="class10">
+      <h2>Class 10 Playlist</h2>
+      <iframe src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen title="Class 10 playlist"></iframe>
+      <p>Prepare for board exams with in-depth Class 10 video lessons</p>
+    </section>
+
+    <section id="class11">
+      <h2>Class 11 Playlist</h2>
+      <iframe src="https://www.youtube.com/embed/L_jWHffIx5E" allowfullscreen title="Class 11 playlist"></iframe>
+      <p>Advanced topics for Class 11 with expert explanations</p>
+    </section>
+  </div>
+  <footer>© 2024 Zentegix. All rights reserved.</footer>
+  <script src="ecom.js"></script>
+</body>
+</html>
+

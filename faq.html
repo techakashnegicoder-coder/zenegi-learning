@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FAQ - Zentegix</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="theme-dark">
+  <div id="site-header"></div>
+  <main class="container page" style="padding-top:40px">
+    <div class="hero">
+      <h1>Frequently Asked Questions</h1>
+      <p>Find answers to common questions about Negi's</p>
+    </div>
+
+    <div id="faqList">
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>What is Negi's ?</h3>
+          <div class="faq-toggle">▼</div>
+        </div>
+        <div class="faq-answer">
+          <p>Negi's is an online learning platform offering comprehensive study materials, video lessons, practice tests, and a community for students in classes 6-10.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>How do I sign up?</h3>
+          <div class="faq-toggle">▼</div>
+        </div>
+        <div class="faq-answer">
+          <p>Click on the Login button in the top right corner. You can create a new account by entering your email and setting a password.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Are the courses free?</h3>
+          <div class="faq-toggle">▼</div>
+        </div>
+        <div class="faq-answer">
+          <p>Many courses and study materials are available for free. We also offer premium courses and resources available for purchase in our shop.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Can I download the study materials?</h3>
+          <div class="faq-toggle">▼</div>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, you can download PDFs of study notes directly from our Notes section. Videos can be streamed online.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>What payment methods do you accept?</h3>
+          <div class="faq-toggle">▼</div>
+        </div>
+        <div class="faq-answer">
+          <p>We accept all major credit/debit cards, UPI, and digital wallet payments. All transactions are secure and encrypted.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>How can I track my progress?</h3>
+          <div class="faq-toggle">▼</div>
+        </div>
+        <div class="faq-answer">
+          <p>Visit the Achievements section to view your completed tests, earned badges, and certificates. Your profile page shows all your learning activity.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Is there a community forum?</h3>
+          <div class="faq-toggle">▼</div>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! Join our Community section to connect with other students, ask questions, and get peer support on various topics.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>How do I get support?</h3>
+          <div class="faq-toggle">▼</div>
+        </div>
+        <div class="faq-answer">
+          <p>You can reach us through our Contact page, email support@Zentegix.com, or use the chat support available on the platform.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="includes.js"></script>
+  <script>
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', function(){
+        this.parentElement.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

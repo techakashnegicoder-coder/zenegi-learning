@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Notes - Zentegix</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0f1a;--bg2:#141b2a;--card:#1a2235;--accent:#49c6ff;--accent2:#7367ff;--muted:#a8b5cc}
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg),var(--bg2));color:#eef2ff;min-height:100vh;padding-top:80px}
+    .navbar{position:fixed;top:0;left:0;right:0;background:rgba(10,15,26,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.05);padding:16px 28px;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+    .navbar-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:20px;font-weight:700;background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-link{color:var(--muted);text-decoration:none;font-weight:500;transition:all 0.2s;margin:0 12px}
+    .nav-link:hover{color:#eef2ff}
+    a{color:var(--accent);text-decoration:none;transition:all 0.2s}
+    a:hover{color:#eef2ff;text-decoration:underline}
+    .container{max-width:1200px;margin:0 auto;padding:40px 28px}
+    .hero{text-align:center;margin-bottom:40px}
+    .hero h1{font-size:42px;font-weight:700;margin:0 0 12px;background:linear-gradient(135deg,#eef2ff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{color:var(--muted);font-size:16px;margin:0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-top:32px}
+    .item{background:linear-gradient(135deg,rgba(26,34,53,0.8),rgba(26,34,53,0.5));border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;transition:all 0.3s;display:flex;flex-direction:column;gap:16px}
+    .item:hover{transform:translateY(-8px);border-color:rgba(73,198,255,0.3);box-shadow:0 20px 40px rgba(73,198,255,0.1);background:linear-gradient(135deg,rgba(26,34,53,0.95),rgba(26,34,53,0.7))}
+    .item h3{font-size:18px;margin:0;color:#eef2ff}
+    .item p{color:var(--muted);margin:0;font-size:14px}
+    .btn{display:inline-block;padding:10px 18px;background:linear-gradient(90deg,var(--accent2),var(--accent));border:0;border-radius:8px;color:#0a0f1a;font-weight:600;cursor:pointer;transition:all 0.2s;text-decoration:none;width:fit-content}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(115,103,255,0.5)}
+    footer{text-align:center;color:var(--muted);font-size:13px;padding:20px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.05)}
+    @media (max-width:768px){.hero h1{font-size:28px} .grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-inner">
+        <a href="index.html" class="logo" style="text-decoration:none;cursor:pointer">📝 Zentegix</a>
+      <div style="margin-left:auto">
+        <a href="cart.html" class="btn primary" style="text-decoration:none">🛒 Cart (<span id="cartCount">0</span>)</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero">
+      <h1>📖 Study Notes</h1>
+      <p>Access comprehensive study materials for each class level</p>
+    </div>
+    <div class="grid">
+      <div class="item" id="class6">
+        <h3>Class 6 Notes</h3>
+        <p>Complete study materials for Class 6 covering all subjects</p>
+        <a class="btn" href="https://example.com/notes/class6.pdf" target="_blank" rel="noopener noreferrer">Download PDF</a>
+      </div>
+
+      <div class="item" id="class7">
+        <h3>Class 7 Notes</h3>
+        <p>Comprehensive notes for Class 7 with detailed explanations</p>
+        <a class="btn" href="https://example.com/notes/class7.pdf" target="_blank" rel="noopener noreferrer">Download PDF</a>
+      </div>
+
+      <div class="item" id="class8">
+        <h3>Class 8 Notes</h3>
+        <p>In-depth study materials for Class 8 preparation</p>
+        <a class="btn" href="https://example.com/notes/class8.pdf" target="_blank" rel="noopener noreferrer">Download PDF</a>
+      </div>
+
+      <div class="item" id="class9">
+        <h3>Class 9 Notes</h3>
+        <p>Essential notes for Class 9 with practice problems included</p>
+        <a class="btn" href="https://example.com/notes/class9.pdf" target="_blank" rel="noopener noreferrer">Download PDF</a>
+      </div>
+
+      <div class="item" id="class10">
+        <h3>Class 10 Notes</h3>
+        <p>Board exam focused notes for Class 10 students</p>
+        <a class="btn" href="https://example.com/notes/class10.pdf" target="_blank" rel="noopener noreferrer">Download PDF</a>
+      </div>
+    </div>
+  </div>
+  <footer>© 2024 Zentegix. All rights reserved.</footer>
+  <script src="ecom.js"></script>
+</body>
+</html>
+

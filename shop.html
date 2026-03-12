@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Zentegix Shop — Premium Study Materials</title>
+    <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0f1a;--bg2:#141b2a;--card:#1a2235;--accent:#49c6ff;--accent2:#7367ff;--muted:#a8b5cc;--success:#1dd1a1}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:'Poppins', sans-serif}
+    body{background:linear-gradient(135deg,var(--bg),var(--bg2));color:#eef2ff;min-height:100vh;padding-top:80px}
+
+    /* NAVBAR */
+    .navbar{position:fixed;top:0;left:0;right:0;background:rgba(10,15,26,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.05);padding:16px 28px;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+    .navbar-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .logo{font-size:20px;font-weight:700;background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .search-bar{display:flex;align-items:center;gap:8px;padding:10px 16px;background:rgba(255,255,255,0.06);border-radius:10px;border:1px solid rgba(255,255,255,0.08);flex:1;max-width:400px}
+    .search-bar input{flex:1;background:transparent;border:0;color:inherit;outline:none;font-size:14px}
+    .nav-action{display:flex;gap:8px;align-items:center}
+    .btn{padding:10px 20px;border-radius:10px;border:0;font-weight:600;cursor:pointer;transition:all 0.25s;font-family:'Poppins',sans-serif;font-size:14px}
+    .btn.primary{background:linear-gradient(90deg,var(--accent2),var(--accent));color:#0a0f1a;box-shadow:0 4px 15px rgba(115,103,255,0.3)}
+    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(115,103,255,0.5)}
+    .btn.ghost{background:rgba(255,255,255,0.08);color:var(--muted);border:1px solid rgba(255,255,255,0.1)}
+    .btn.ghost:hover{background:rgba(255,255,255,0.12);color:#eef2ff;border-color:rgba(255,255,255,0.2)}
+    .badge{background:var(--success);color:#000;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700}
+
+    /* MAIN CONTAINER */
+    .container{max-width:1400px;margin:0 auto;padding:40px 28px}
+    .hero{text-align:center;margin-bottom:48px}
+    .hero h1{font-size:48px;font-weight:700;margin:0 0 12px;background:linear-gradient(135deg,#eef2ff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{color:var(--muted);font-size:16px;margin:0}
+
+    /* PRODUCTS GRID */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin-top:32px}
+    .product{background:linear-gradient(135deg,rgba(26,34,53,0.8),rgba(26,34,53,0.5));border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;transition:all 0.3s;display:flex;flex-direction:column}
+    .product:hover{transform:translateY(-8px);border-color:rgba(73,198,255,0.3);box-shadow:0 20px 40px rgba(73,198,255,0.1);background:linear-gradient(135deg,rgba(26,34,53,0.95),rgba(26,34,53,0.7))}
+    .product-img{height:200px;background:linear-gradient(135deg,#1a2235,#141b2a);overflow:hidden;position:relative}
+    .product-img img{width:100%;height:100%;object-fit:cover}
+    .badge-sale{position:absolute;top:12px;right:12px;background:linear-gradient(90deg,#ff6b6b,#ee5a6f);color:#fff;padding:6px 12px;border-radius:8px;font-weight:700;font-size:12px}
+    .product-body{padding:20px;flex:1;display:flex;flex-direction:column;gap:12px}
+    .product-title{font-weight:600;font-size:16px;margin:0;color:#eef2ff}
+    .product-desc{color:var(--muted);font-size:13px;margin:0}
+    .product-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+    .price-tag{font-size:18px;font-weight:700;color:var(--accent)}
+    .rating{color:var(--muted);font-size:12px}
+
+    /* CART PANEL */
+    .cart-panel{position:fixed;right:0;top:80px;width:380px;height:calc(100vh-80px);background:linear-gradient(180deg,var(--card),var(--bg2));border-left:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;transform:translateX(400px);transition:all 0.3s;z-index:999;box-shadow:-10px 0 40px rgba(0,0,0,0.4)}
+    .cart-panel.show{transform:translateX(0)}
+    .cart-header{padding:24px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between}
+    .cart-header h2{margin:0;font-size:20px}
+    .cart-close{background:transparent;border:0;color:var(--muted);font-size:24px;cursor:pointer}
+    .cart-items{flex:1;overflow-y:auto;padding:12px}
+    .cart-item{background:rgba(255,255,255,0.04);padding:14px;border-radius:10px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.06)}
+    .cart-item-name{font-weight:600;color:#eef2ff;margin-bottom:6px}
+    .cart-item-detail{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;margin-bottom:8px}
+    .qty-ctrl{display:flex;gap:4px;align-items:center}
+    .qty-btn{background:rgba(255,255,255,0.06);border:0;color:var(--muted);padding:4px 8px;border-radius:6px;cursor:pointer;transition:all 0.2s}
+    .qty-btn:hover{background:rgba(73,198,255,0.2);color:var(--accent)}
+    .cart-remove{color:#ff6b6b;font-size:12px;cursor:pointer;font-weight:600}
+    .cart-footer{border-top:1px solid rgba(255,255,255,0.05);padding:20px;display:flex;flex-direction:column;gap:12px}
+    .cart-total{display:flex;justify-content:space-between;font-weight:700;font-size:16px;color:#eef2ff}
+    .empty-cart{text-align:center;padding:40px 20px;color:var(--muted)}
+    .empty-cart-icon{font-size:48px;margin-bottom:12px}
+
+    /* FOOTER */
+    footer{text-align:center;color:var(--muted);font-size:13px;padding:20px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.05)}
+
+    @media (max-width:1024px){.cart-panel{width:100%;right:-100%;top:80px} .hero h1{font-size:36px}}
+    @media (max-width:768px){.navbar-inner{flex-direction:column;gap:12px} .search-bar{max-width:100%} .grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px} .hero h1{font-size:28px}}
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+            <a href="index.html" class="logo" style="text-decoration:none;cursor:pointer">🛍️ Zentegix</a>
+      <div class="search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input id="search" type="text" placeholder="Search products...">
+      </div>
+      <div class="nav-action">
+        <button id="viewCartBtn" class="btn primary">
+          🛒 Cart (<span id="cartCount">0</span>)
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <div class="hero">
+      <h1>Zentegix Shop</h1>
+      <p>Curated study materials, courses & exclusive merchandise</p>
+    </div>
+
+    <div id="products" class="grid"></div>
+  </div>
+
+  <!-- CART PANEL -->
+  <div id="cartPanel" class="cart-panel">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button id="closeCart" class="cart-close">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart">
+        <div class="empty-cart-icon">🛒</div>
+        <p>Cart is empty</p>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span>₹<span id="cartTotal">0</span></span>
+      </div>
+      <button id="checkoutBtn" class="btn primary" style="width:100%">Proceed to Checkout</button>
+      <button id="clearCartBtn" class="btn ghost" style="width:100%">Clear Cart</button>
+    </div>
+  </div>
+
+  <footer>© 2025 Zentegix Shop | Premium Study Resources</footer>
+
+  <script src="ecom.js"></script>
+  <script>
+    const productsEl = document.getElementById('products');
+    const searchEl = document.getElementById('search');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartPanel = document.getElementById('cartPanel');
+    const cartItemsEl = document.getElementById('cartItems');
+    const cartTotalEl = document.getElementById('cartTotal');
+    const viewCartBtn = document.getElementById('viewCartBtn');
+    const closeCartBtn = document.getElementById('closeCart');
+
+    const products = [
+      {id:'p1', title:'Maths Formula Book', price:199, img:'https://via.placeholder.com/600x360?text=Maths+Book'},
+      {id:'p2', title:'Science Notes PDF', price:149, img:'https://via.placeholder.com/600x360?text=Science+PDF'},
+      {id:'p3', title:"Zentegix T‑Shirt", price:499, img:'https://via.placeholder.com/600x360?text=Tshirt'},
+      {id:'p4', title:'Revision Cards Pack', price:249, img:'https://via.placeholder.com/600x360?text=Revision+Cards'},
+      {id:'p5', title:'Class 10 Video Course', price:999, img:'https://via.placeholder.com/600x360?text=Video+Course'},
+      {id:'p6', title:'Premium Mock Tests', price:699, img:'https://via.placeholder.com/600x360?text=Mock+Tests'},
+      {id:'p7', title:'Stationery Kit', price:299, img:'https://via.placeholder.com/600x360?text=Stationery'}
+    ];
+
+    let cart = [];
+
+    function loadCart(){
+      try{ const saved = localStorage.getItem('Zentegix_cart'); cart = saved?JSON.parse(saved):[]; }catch(e){cart=[]}
+    }
+    function saveCart(){ try{ localStorage.setItem('Zentegix_cart', JSON.stringify(cart)); }catch(e){}
+    }
+
+    function renderProducts(filter=''){
+      productsEl.innerHTML = '';
+      const f = filter.trim().toLowerCase();
+      products.filter(p=> p.title.toLowerCase().includes(f)).forEach((p,i)=>{
+        const div = document.createElement('div'); div.className='product';
+        const isTrending = i < 3; const isSale = i % 2 === 0;
+        div.innerHTML = `
+          <div class="product-img">
+            <img src="${p.img}" alt="${p.title}">
+            ${isSale?'<div class="badge-sale">🎉 SALE</div>':''}
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">${p.title}</h3>
+            <p class="product-desc">Premium quality study material — trusted by 10K+ students</p>
+            <div class="product-footer">
+              <div class="price-tag">₹${p.price}</div>
+              <div class="rating">⭐ 4.8 (${100+i*20} reviews)</div>
+            </div>
+          </div>
+          <div style="padding:0 20px 20px;display:flex;gap:10px">
+            <button class="btn primary" style="flex:1" onclick="ZentegixAddToCart('${p.id}'); loadCart(); updateCartUI();">Add to Cart</button>
+            <button class="btn ghost" style="flex:1" onclick="viewDetails('${p.id}')">👁 View</button>
+          </div>`;
+        productsEl.appendChild(div);
+      });
+    }
+
+    function addToCart(id){
+      const prod = products.find(p=>p.id===id); if(!prod) return;
+      const existing = cart.find(i=>i.id===id);
+      if(existing){ existing.qty += 1; } else { cart.push({id:prod.id,title:prod.title,price:prod.price,qty:1}); }
+      saveCart(); updateCartUI();
+    }
+
+    function updateCartUI(){
+      cartCountEl.innerText = cart.reduce((s,i)=>s+i.qty,0);
+      if(cart.length===0){
+        cartItemsEl.innerHTML = '<div class="empty-cart"><div class="empty-cart-icon">🛒</div><p>Cart is empty</p></div>';
+      } else {
+        cartItemsEl.innerHTML = '';
+        let total = 0;
+        cart.forEach(item=>{
+          total += item.price * item.qty;
+          const el = document.createElement('div'); el.className='cart-item';
+          el.innerHTML = `
+            <div>
+              <div class="cart-item-name">${item.title}</div>
+              <div class="cart-item-detail">
+                <span>₹${item.price} × ${item.qty} = <strong>₹${item.price * item.qty}</strong></span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div class="qty-ctrl">
+                  <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+                  <span style="padding:0 10px">${item.qty}</span>
+                  <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                </div>
+                <span class="cart-remove" onclick="removeItem('${item.id}')">Remove</span>
+              </div>
+            </div>`;
+          cartItemsEl.appendChild(el);
+        });
+      }
+      cartTotalEl.innerText = total;
+    }
+
+    function changeQty(id, delta){
+      const it = cart.find(i=>i.id===id); if(!it) return; it.qty += delta; if(it.qty<=0) cart = cart.filter(x=>x.id!==id); saveCart(); updateCartUI();
+    }
+
+    function removeItem(id){ cart = cart.filter(i=>i.id!==id); saveCart(); updateCartUI(); }
+
+    function clearCart(){ cart=[]; saveCart(); updateCartUI(); }
+
+    function viewDetails(id){ const p = products.find(x=>x.id===id); if(!p) return alert(p.title); alert(p.title + " — Price: ₹" + p.price + "\nThis is a placeholder product detail."); }
+
+    viewCartBtn.addEventListener('click', ()=>{ cartPanel.classList.toggle('show'); updateCartUI(); });
+    closeCartBtn.addEventListener('click', ()=>{ cartPanel.classList.remove('show'); });
+    document.getElementById('clearCartBtn').addEventListener('click', ()=>{ if(confirm('Clear cart?')) { clearCart(); cartPanel.classList.remove('show'); } });
+    document.getElementById('checkoutBtn').addEventListener('click', ()=>{
+      if(cart.length===0) return alert('Cart is empty');
+      const amount = cart.reduce((s,i)=>s+i.price*i.qty,0);
+      if(confirm(`✨ Proceed to pay ₹${amount}? (This is a demo checkout)`)){
+        clearCart(); alert('🎉 Payment simulated successfully!\n\nThank you for your purchase!\n\nOrder ID: #' + Date.now().toString().slice(-6)); cartPanel.classList.remove('show');
+      }
+    });
+
+    searchEl.addEventListener('input', (e)=> renderProducts(e.target.value));
+
+    // init
+    loadCart(); renderProducts(); updateCartUI();
+  </script>
+</body>
+</html>
+

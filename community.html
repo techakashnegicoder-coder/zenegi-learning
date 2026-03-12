@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Community - Zentegix</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0f1a;--bg2:#141b2a;--card:#1a2235;--accent:#49c6ff;--accent2:#7367ff;--muted:#a8b5cc}
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg),var(--bg2));color:#eef2ff;min-height:100vh;padding-top:80px}
+    .navbar{position:fixed;top:0;left:0;right:0;background:rgba(10,15,26,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.05);padding:16px 28px;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+    .navbar-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:20px;font-weight:700;background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-link{color:var(--muted);text-decoration:none;font-weight:500;transition:all 0.2s;margin:0 12px}
+    .nav-link:hover{color:#eef2ff}
+    .container{max-width:1200px;margin:0 auto;padding:40px 28px}
+    .hero{text-align:center;margin-bottom:60px}
+    .hero h1{font-size:42px;font-weight:700;margin:0 0 12px;background:linear-gradient(135deg,#eef2ff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{color:var(--muted);font-size:16px;margin:0}
+    .forums{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:40px}
+    .forum{background:linear-gradient(135deg,rgba(26,34,53,0.8),rgba(26,34,53,0.5));border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;transition:all 0.3s}
+    .forum:hover{border-color:rgba(73,198,255,0.3);box-shadow:0 20px 40px rgba(73,198,255,0.1);transform:translateY(-8px)}
+    .forum-icon{font-size:32px;margin-bottom:12px}
+    .forum h3{font-size:18px;margin:0 0 8px;color:#eef2ff}
+    .forum p{color:var(--muted);margin:0 0 12px;font-size:13px}
+    .forum-stats{display:flex;gap:12px;font-size:12px;color:var(--muted);margin:0 0 16px}
+    .forum-stat{display:flex;gap:4px}
+    .btn{display:inline-block;padding:10px 16px;background:linear-gradient(90deg,var(--accent2),var(--accent));border:0;border-radius:8px;color:#0a0f1a;font-weight:600;cursor:pointer;transition:all 0.2s;text-decoration:none}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(115,103,255,0.5)}
+    .members{background:linear-gradient(135deg,rgba(26,34,53,0.8),rgba(26,34,53,0.5));border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;margin-top:40px;text-align:center}
+    .members h2{margin:0 0 24px;color:#eef2ff}
+    .member-avatars{display:flex;justify-content:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+    .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7367ff,#49c6ff)}
+    footer{text-align:center;color:var(--muted);font-size:13px;padding:20px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.05)}
+    
+    /* Responsive */
+    @media (max-width:768px){
+      .navbar{padding:12px 16px}
+      .container{padding:24px 16px}
+      .hero h1{font-size:28px}
+      .forums{gap:16px}
+      .members{padding:20px}
+      footer{font-size:12px}
+    }
+    @media (max-width:520px){
+      .navbar{padding:10px 12px}
+      .container{padding:16px}
+      .hero h1{font-size:20px}
+      .hero p{font-size:12px}
+      .forums{grid-template-columns:1fr;gap:12px}
+      .forum{padding:14px}
+      .forum-icon{font-size:28px}
+      .forum h3{font-size:14px}
+      .forum-stats{font-size:11px}
+      .members{padding:14px;margin-top:20px}
+      .member-avatars{gap:8px}
+    }
+    @media (max-width:400px){
+      .hero h1{font-size:16px}
+      .container{padding:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo" style="text-decoration:none;cursor:pointer">👥 Zentegix</a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero">
+      <h1>👥 Community</h1>
+      <p>Connect, learn, and grow together with fellow students</p>
+    </div>
+
+    <div class="forums">
+      <div class="forum">
+        <div class="forum-icon">📚</div>
+        <h3>Class 9 Discussions</h3>
+        <p>Ask questions and share notes about Class 9 topics</p>
+        <div class="forum-stats">
+          <span class="forum-stat">💬 342 topics</span>
+          <span class="forum-stat">👥 890 members</span>
+        </div>
+        <button class="btn">Join Forum</button>
+      </div>
+
+      <div class="forum">
+        <div class="forum-icon">📝</div>
+        <h3>Class 10 Board Prep</h3>
+        <p>Discuss board exam strategies and share study tips</p>
+        <div class="forum-stats">
+          <span class="forum-stat">💬 567 topics</span>
+          <span class="forum-stat">👥 1.2K members</span>
+        </div>
+        <button class="btn">Join Forum</button>
+      </div>
+
+      <div class="forum">
+        <div class="forum-icon">🧪</div>
+        <h3>Science & Math Help</h3>
+        <p>Get help with science and math concepts from peers</p>
+        <div class="forum-stats">
+          <span class="forum-stat">💬 421 topics</span>
+          <span class="forum-stat">👥 756 members</span>
+        </div>
+        <button class="btn">Join Forum</button>
+      </div>
+
+      <div class="forum">
+        <div class="forum-icon">🎓</div>
+        <h3>General Study Tips</h3>
+        <p>Share and learn effective study techniques</p>
+        <div class="forum-stats">
+          <span class="forum-stat">💬 298 topics</span>
+          <span class="forum-stat">👥 543 members</span>
+        </div>
+        <button class="btn">Join Forum</button>
+      </div>
+
+      <div class="forum">
+        <div class="forum-icon">🎯</div>
+        <h3>Career Guidance</h3>
+        <p>Explore career options and educational paths</p>
+        <div class="forum-stats">
+          <span class="forum-stat">💬 156 topics</span>
+          <span class="forum-stat">👥 432 members</span>
+        </div>
+        <button class="btn">Join Forum</button>
+      </div>
+
+      <div class="forum">
+        <div class="forum-icon">⚡</div>
+        <h3>Fun & Off-Topic</h3>
+        <p>Casual discussions, memes, and fun activities</p>
+        <div class="forum-stats">
+          <span class="forum-stat">💬 876 topics</span>
+          <span class="forum-stat">👥 2.1K members</span>
+        </div>
+        <button class="btn">Join Forum</button>
+      </div>
+    </div>
+
+    <div class="members">
+      <h2>🌟 Our Community Members</h2>
+      <div class="member-avatars">
+        <div class="avatar"></div>
+        <div class="avatar"></div>
+        <div class="avatar"></div>
+        <div class="avatar"></div>
+        <div class="avatar"></div>
+        <div class="avatar"></div>
+      </div>
+      <p style="color:var(--muted);margin:0">5,234+ active members learning together</p>
+    </div>
+  </div>
+  <footer>© 2024 Zentegix. All rights reserved.</footer>
+</body>
+</html>
+

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cart - Zentegix</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0f1a;--bg2:#141b2a;--card:#1a2235;--accent:#49c6ff;--accent2:#7367ff;--muted:#a8b5cc}
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg),var(--bg2));color:#eef2ff;min-height:100vh;padding-top:80px}
+    .navbar{position:fixed;top:0;left:0;right:0;background:rgba(10,15,26,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.05);padding:16px 28px;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+    .navbar-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:20px;font-weight:700;background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-link{color:var(--muted);text-decoration:none;font-weight:500;transition:all 0.2s;margin:0 12px}
+    .nav-link:hover{color:#eef2ff}
+    .container{max-width:1200px;margin:0 auto;padding:40px 28px}
+    .hero{text-align:center;margin-bottom:40px}
+    .hero h1{font-size:42px;font-weight:700;margin:0 0 12px;background:linear-gradient(135deg,#eef2ff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .cart-wrapper{display:grid;grid-template-columns:1fr 320px;gap:32px;margin-top:40px}
+    .cart-items{background:linear-gradient(135deg,rgba(26,34,53,0.8),rgba(26,34,53,0.5));border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px}
+    .cart-item{display:grid;grid-template-columns:80px 1fr 100px;gap:16px;align-items:center;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.05)}
+    .cart-item:last-child{border-bottom:0}
+    .item-img{width:80px;height:80px;background:linear-gradient(135deg,#7367ff,#49c6ff);border-radius:8px}
+    .item-info h3{margin:0 0 4px;color:#eef2ff;font-size:14px}
+    .item-info p{color:var(--muted);margin:0;font-size:13px}
+    .item-price{text-align:right}
+    .qty-control{display:flex;gap:8px;align-items:center;justify-content:flex-end}
+    .qty-btn{padding:4px 8px;background:rgba(73,198,255,0.2);border:1px solid var(--accent);color:var(--accent);border-radius:4px;cursor:pointer;font-size:12px}
+    .summary{background:linear-gradient(135deg,rgba(26,34,53,0.8),rgba(26,34,53,0.5));border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;height:fit-content}
+    .summary-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);color:var(--muted);font-size:14px}
+    .summary-row.total{border-bottom:0;font-size:18px;font-weight:700;color:#eef2ff}
+    .summary-row.total span{color:var(--accent)}
+    .btn{display:inline-block;width:100%;padding:12px;background:linear-gradient(90deg,var(--accent2),var(--accent));border:0;border-radius:8px;color:#0a0f1a;font-weight:600;cursor:pointer;transition:all 0.2s;text-decoration:none;text-align:center;margin-top:16px}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(115,103,255,0.5)}
+    .empty{text-align:center;padding:60px 20px}
+    .empty-icon{font-size:60px;margin-bottom:16px}
+    footer{text-align:center;color:var(--muted);font-size:13px;padding:20px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.05)}
+    
+    /* Responsive */
+    @media (max-width:768px){
+      .navbar{padding:12px 16px}
+      .container{padding:24px 16px}
+      .cart-wrapper{grid-template-columns:1fr;gap:20px}
+      footer{font-size:12px}
+    }
+    @media (max-width:520px){
+      .navbar{padding:10px 12px}
+      .container{padding:16px}
+      .cart-wrapper{gap:16px}
+      h2{font-size:16px}
+      .cart-item{padding:10px;font-size:12px}
+      .btn{padding:8px 12px;font-size:11px}
+      .empty{padding:40px 16px}
+      .empty-icon{font-size:40px;margin-bottom:12px}
+    }
+    @media (max-width:400px){
+      .container{padding:12px}
+      h2{font-size:14px}
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo" style="text-decoration:none;cursor:pointer">🛒 Zentegix</a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero">
+      <h1>🛒 Shopping Cart</h1>
+      <p>Review and checkout your items</p>
+    </div>
+    <div class="cart-wrapper">
+      <div class="cart-items" id="cartItems">
+        <!-- dynamic cart items will be rendered here -->
+      </div>
+      <div class="summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotal">₹0</span>
+        </div>
+        <div class="summary-row">
+          <span>Tax</span>
+          <span id="tax">₹0</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span id="shipping">Free</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span id="total">₹0</span>
+        </div>
+        <button class="btn" id="checkoutBtn">Checkout</button>
+        <a href="shop.html" class="btn" style="background:rgba(115,103,255,0.3);border:1px solid var(--accent2)">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+  <footer>© 2024 Zentegix. All rights reserved.</footer>
+  <script src="ecom.js"></script>
+  <script>
+    function renderCartPage(){
+      const cart = loadZentegixCart();
+      const container = document.getElementById('cartItems');
+      const subtotalEl = document.getElementById('subtotal');
+      const taxEl = document.getElementById('tax');
+      const totalEl = document.getElementById('total');
+      if(!container) return;
+      container.innerHTML = '';
+      if(cart.length===0){
+        container.innerHTML = '<div class="empty"><div class="empty-icon">🛒</div><p>Your cart is empty</p></div>';
+      } else {
+        cart.forEach(item => {
+          const prod = Zentegix_PRODUCTS.find(p=>p.id===item.id) || {img:'', title:item.title};
+          const div = document.createElement('div'); div.className='cart-item';
+          div.innerHTML = `
+            <div class="item-img"><img src="${prod.img}" style="width:100%;height:100%;object-fit:cover;border-radius:8px"></div>
+            <div class="item-info">
+              <h3>${item.title}</h3>
+              <p>Price: ₹${item.price}</p>
+            </div>
+            <div class="item-price">
+              <div style="display:flex;flex-direction:column;align-items:flex-end">
+                <div style="margin-bottom:8px">₹${item.price * item.qty}</div>
+                <div class="qty-control">
+                  <button class="qty-btn" onclick="(function(){ZentegixChangeQty('${item.id}', -1); renderCartPage();})();">−</button>
+                  <span style="padding:0 8px">${item.qty}</span>
+                  <button class="qty-btn" onclick="(function(){ZentegixChangeQty('${item.id}', 1); renderCartPage();})();">+</button>
+                </div>
+                <div style="margin-top:8px"><a href="#" onclick="(function(){ZentegixRemoveItem('${item.id}'); renderCartPage();})();" class="cart-remove">Remove</a></div>
+              </div>
+            </div>`;
+          container.appendChild(div);
+        });
+      }
+      const subtotal = cart.reduce((s,i)=> s + i.price * (i.qty||1), 0);
+      const tax = Math.round(subtotal * 0.12);
+      const total = subtotal + tax;
+      if(subtotalEl) subtotalEl.innerText = '₹' + subtotal;
+      if(taxEl) taxEl.innerText = '₹' + tax;
+      if(totalEl) totalEl.innerText = '₹' + total;
+      updateGlobalCartCount();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCartPage();
+      document.getElementById('checkoutBtn').addEventListener('click', () => {
+        const cart = loadZentegixCart(); if(cart.length===0) return alert('Cart is empty');
+        if(confirm('Proceed to pay ₹' + cart.reduce((s,i)=> s + i.price * (i.qty||1),0) + '? (demo)')){
+          ZentegixClearCart(); renderCartPage(); alert('Order placed (demo). Thank you! Order ID: ' + Date.now().toString().slice(-6));
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

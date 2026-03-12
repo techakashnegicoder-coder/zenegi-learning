@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pricing - Zentegix</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0f1a;--bg2:#141b2a;--card:#1a2235;--accent:#49c6ff;--accent2:#7367ff;--muted:#a8b5cc}
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg),var(--bg2));color:#eef2ff;min-height:100vh;padding-top:80px}
+    .navbar{position:fixed;top:0;left:0;right:0;background:rgba(10,15,26,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.05);padding:16px 28px;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+    .navbar-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:20px;font-weight:700;background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-link{color:var(--muted);text-decoration:none;font-weight:500;transition:all 0.2s;margin:0 12px}
+    .nav-link:hover{color:#eef2ff}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+    .cart-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--muted);text-decoration:none;font-weight:600}
+    .cart-btn:hover{background:rgba(255,255,255,0.05);color:#eef2ff}
+    .container{max-width:1200px;margin:0 auto;padding:40px 28px}
+    .hero{text-align:center;margin-bottom:60px}
+    .hero h1{font-size:42px;font-weight:700;margin:0 0 12px;background:linear-gradient(135deg,#eef2ff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{color:var(--muted);font-size:16px;margin:0}
+    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:40px}
+    .plan{background:linear-gradient(135deg,rgba(26,34,53,0.8),rgba(26,34,53,0.5));border:2px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;transition:all 0.3s;position:relative}
+    .plan:hover{border-color:rgba(73,198,255,0.3);box-shadow:0 20px 40px rgba(73,198,255,0.1);transform:translateY(-8px)}
+    .plan.popular{border-color:var(--accent2);transform:scale(1.05)}
+    .plan.popular::before{content:'POPULAR';position:absolute;top:-12px;right:24px;background:linear-gradient(90deg,var(--accent2),var(--accent));padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700}
+    .plan-name{font-size:20px;font-weight:700;margin:0 0 12px;color:#eef2ff}
+    .plan-price{font-size:36px;font-weight:700;color:var(--accent);margin:0 0 8px}
+    .plan-price span{font-size:16px;color:var(--muted)}
+    .plan-desc{color:var(--muted);font-size:14px;margin:0 0 24px}
+    .plan-features{list-style:none;padding:0;margin:0 0 24px}
+    .plan-features li{padding:8px 0;color:var(--muted);font-size:14px;border-bottom:1px solid rgba(255,255,255,0.05)}
+    .plan-features li:before{content:'✓ ';color:var(--accent);font-weight:700;margin-right:8px}
+    .btn{display:inline-block;width:100%;padding:12px;background:linear-gradient(90deg,var(--accent2),var(--accent));border:0;border-radius:8px;color:#0a0f1a;font-weight:600;cursor:pointer;transition:all 0.2s;text-decoration:none;text-align:center}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(115,103,255,0.5)}
+    footer{text-align:center;color:var(--muted);font-size:13px;padding:20px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.05)}
+    
+    /* Responsive */
+    @media (max-width:768px){
+      .navbar{padding:12px 16px}
+      .container{padding:24px 16px}
+      .hero h1{font-size:28px}
+      .plans{gap:16px}
+      footer{font-size:12px}
+    }
+    @media (max-width:520px){
+      .navbar{padding:10px 12px}
+      .container{padding:16px}
+      .hero h1{font-size:20px}
+      .hero p{font-size:12px}
+      .plans{grid-template-columns:1fr;gap:12px}
+      .plan{padding:16px}
+      .plan-name{font-size:16px}
+      .plan-price{font-size:28px}
+      .plan-features li{font-size:12px;padding:6px 0}
+      .btn{padding:10px}
+    }
+    @media (max-width:400px){
+      .hero h1{font-size:16px}
+      .container{padding:12px}
+      .plan{padding:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo" style="text-decoration:none;cursor:pointer">💳 Zentegix</a>
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-btn" title="View cart">
+          🛒 <span id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero">
+      <h1>💳 Pricing Plans</h1>
+      <p>Choose a plan that works for you</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="plan">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">Free</div>
+        <p class="plan-desc">Perfect for getting started</p>
+        <ul class="plan-features">
+          <li>Access to free courses</li>
+          <li>Basic study materials</li>
+          <li>Community forums</li>
+          <li>Limited to 2 classes</li>
+        </ul>
+        <button class="btn">Get Started</button>
+      </div>
+
+      <div class="plan popular">
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">₹49<span>/month</span></div>
+        <p class="plan-desc">Most popular choice</p>
+        <ul class="plan-features">
+          <li>All Starter features</li>
+          <li>Full course access</li>
+          <li>Unlimited study materials</li>
+          <li>Practice tests & answers</li>
+          <li>Priority support</li>
+          <li>All classes (6-10)</li>
+        </ul>
+        <button class="btn">Subscribe Now</button>
+      </div>
+
+      <div class="plan">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">₹149<span>/year</span></div>
+        <p class="plan-desc">Best value for long-term</p>
+        <ul class="plan-features">
+          <li>All Premium features</li>
+          <li>Certificates & badges</li>
+          <li>Personal study plan</li>
+          <li>1:1 mentor support</li>
+          <li>Exclusive webinars</li>
+          <li>Lifetime access</li>
+        </ul>
+        <button class="btn">Subscribe Now</button>
+      </div>
+    </div>
+  </div>
+  <footer>© 2024 Zentegix. All rights reserved.</footer>
+  <script src="ecom.js"></script>
+</body>
+</html>
+
