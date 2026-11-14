@@ -8,6 +8,31 @@
       if(!res.ok) return;
       const text = await res.text();
       el.innerHTML = text;
+      const menuToggle = el.querySelector('.site-menu-toggle');
+      const menu = el.querySelector('#site-menu');
+      if(menuToggle && menu){
+        menuToggle.addEventListener('click', ()=>{
+          const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+          menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+          menuToggle.setAttribute('aria-label', isExpanded ? 'Open navigation menu' : 'Close navigation menu');
+          menu.hidden = isExpanded;
+        });
+        menu.addEventListener('click', (event)=>{
+          if(event.target instanceof HTMLAnchorElement){
+            menu.hidden = true;
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Open navigation menu');
+          }
+        });
+        document.addEventListener('keydown', (event)=>{
+          if(event.key === 'Escape' && !menu.hidden){
+            menu.hidden = true;
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Open navigation menu');
+            menuToggle.focus();
+          }
+        });
+      }
       // hook cart count if present (support both names)
       if(typeof updateGlobalCartCount === 'function') updateGlobalCartCount();
       if(typeof ZentegixUpdateCartCount === 'function') ZentegixUpdateCartCount();
@@ -34,4 +59,3 @@
     loadInclude('site-footer','footer.html');
   });
 })();
-

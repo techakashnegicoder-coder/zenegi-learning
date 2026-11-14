@@ -42,17 +42,35 @@
     .btn-ghost{background:rgba(255,255,255,0.08);color:var(--text);border-color:rgba(255,255,255,0.12)}
     .btn-ghost:hover{background:rgba(255,255,255,0.15)}
 
-    .menu-toggle{display:none;background:rgba(255,255,255,0.08);border:0;color:var(--text);padding:10px 12px;border-radius:12px;cursor:pointer}
-    .mobile-nav{display:none;position:absolute;top:68px;left:0;right:0;background:rgba(10,15,26,0.95);border-top:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(12px);}
+    .menu-toggle{display:flex;flex:0 0 auto;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:var(--text);padding:10px 12px;border-radius:12px;cursor:pointer}
+    .menu-toggle span{display:block;width:18px;height:2px;background:currentColor;border-radius:2px;transition:var(--transition)}
+    .menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(7px) rotate(45deg)}
+    .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-7px) rotate(-45deg)}
+    .mobile-nav{display:none;position:absolute;top:100%;left:0;right:0;max-height:calc(100vh - 80px);overflow-y:auto;flex-direction:column;background:rgba(10,15,26,0.98);border-top:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(12px);}
+    .mobile-nav.show{display:flex}
     .mobile-nav a{display:block;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.08);}
 
     /* Hero */
     .hero{padding:120px 0 100px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-    .hero h1{font-size:3.2rem;margin:0 0 18px;line-height:1.1}
+    .hero h1{font-size:clamp(2.4rem,5vw,3.8rem);margin:0 0 18px;line-height:1.08;letter-spacing:-0.04em}
     .hero p{max-width:620px}
+    .hero-kicker{font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.2px;margin:0 0 18px}
+    .hero-highlight{background:linear-gradient(135deg,#a5b4fc,#f9a8d4);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
     .hero-media{position:relative;max-width:520px;margin:0 auto}
     .hero-media::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(99,102,241,0.55),transparent 55%);filter:blur(60px);z-index:-1}
-    .hero-illustration{width:100%;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.08)}
+    .hero-illustration{position:relative;isolation:isolate;width:100%;aspect-ratio:4/3;border-radius:26px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.14);animation:hero-reveal 0.8s 0.2s both}
+    .hero-illustration::after{content:'';position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(11,18,32,0.42));pointer-events:none}
+    .hero-illustration img{display:block;width:100%;height:100%;object-fit:cover}
+    .hero-kicker{animation:hero-reveal 0.65s 0.05s both}
+    .hero-left h1{animation:hero-reveal 0.7s 0.16s both}
+    .hero-left>p:not(.hero-kicker){animation:hero-reveal 0.7s 0.28s both}
+    .hero-actions{animation:hero-reveal 0.7s 0.4s both}
+    @keyframes hero-reveal{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    @media (prefers-reduced-motion:reduce){
+      .hero-kicker,.hero-left h1,.hero-left>p:not(.hero-kicker),.hero-actions,.hero-illustration{animation:none}
+    }
 
     /* Features */
     .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
@@ -96,11 +114,10 @@
       .hero{grid-template-columns:1fr;gap:40px;padding:80px 0 60px}
       .hero-right{order:-1}
     }
-    @media (max-width:720px){
+    @media (max-width:1100px){
       .nav-links{display:none}
-      .menu-toggle{display:inline-flex}
-      .mobile-nav{display:none;flex-direction:column}
-      .mobile-nav.show{display:flex}
+    }
+    @media (max-width:720px){
       .hero{padding:70px 0 50px}
       .section{padding:60px 0}
     }
@@ -115,43 +132,46 @@
       </a>
 
       <nav class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#courses">Courses</a>
-        <a href="#notes">Notes</a>
-        <a href="#videos">Videos</a>
-        <a href="#blog">Blog</a>
-        <a href="#community">Community</a>
-        <a href="#shop">Shop</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
+        <a href="cart.html">Cart</a>
+        <a href="courses.html">Course</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
         <a href="login.html">Login</a>
       </nav>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
     </div>
 
-    <nav class="mobile-nav" id="mobileNav">
-      <a href="#home" class="mobile-link">Home</a>
-      <a href="#courses" class="mobile-link">Courses</a>
-      <a href="#notes" class="mobile-link">Notes</a>
-      <a href="#videos" class="mobile-link">Videos</a>
-      <a href="#blog" class="mobile-link">Blog</a>
-      <a href="#community" class="mobile-link">Community</a>
-      <a href="#shop" class="mobile-link">Shop</a>
-      <a href="#pricing" class="mobile-link">Pricing</a>
-      <a href="#contact" class="mobile-link">Contact</a>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Main Navigation">
+      <a href="admin.html" class="mobile-link">Admin</a>
+      <a href="cart.html" class="mobile-link">Cart</a>
+      <a href="courses.html" class="mobile-link">Course</a>
+      <a href="shop.html" class="mobile-link">Shop</a>
+      <a href="about.html" class="mobile-link">About</a>
+      <a href="achievements.html" class="mobile-link">Achievements</a>
+      <a href="blog.html" class="mobile-link">Blog</a>
+      <a href="community.html" class="mobile-link">Community</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
+      <a href="faq.html" class="mobile-link">FAQ</a>
       <a href="login.html" class="mobile-link">Login</a>
+      <a href="notes.html" class="mobile-link">Notes</a>
+      <a href="pricing.html" class="mobile-link">Pricing</a>
+      <a href="tests.html" class="mobile-link">Tests</a>
+      <a href="videos.html" class="mobile-link">Videos</a>
+      <a href="wishlist.html" class="mobile-link">Wishlist</a>
     </nav>
   </header>
 
   <main class="page" id="home">
     <section class="hero">
       <div class="hero-left">
-        <p style="font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.2px;margin:0 0 18px;">Learn Smarter With Modern Education</p>
-        <h1>Empower your study routine with curated courses, notes &amp; tests.</h1>
+        <p class="hero-kicker">Learn Smarter With Modern Education</p>
+        <h1>Empower your study routine with <span class="hero-highlight">curated courses, notes &amp; tests.</span></h1>
         <p>We help students build skills faster with focused lessons, practice sessions, and a friendly community. Everything you need for confident progress is in one place.</p>
 
-        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;">
+        <div class="hero-actions">
           <a class="btn btn-primary" href="#courses">Explore Courses</a>
           <a class="btn btn-ghost" href="#community">Start Learning</a>
         </div>
@@ -159,7 +179,7 @@
 
       <div class="hero-right">
         <div class="hero-illustration">
-          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=75" alt="Student learning" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          <img src="assets/hero-learning.jpg" alt="Student studying during an online lesson" fetchpriority="high">
         </div>
       </div>
     </section>
@@ -313,8 +333,25 @@
   <script>
     const menuToggle = document.getElementById('menuToggle');
     const mobileNav = document.getElementById('mobileNav');
-    menuToggle.addEventListener('click', () => mobileNav.classList.toggle('show'));
-    document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => mobileNav.classList.remove('show')));
+    menuToggle.addEventListener('click', () => {
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+      menuToggle.setAttribute('aria-label', isExpanded ? 'Open navigation menu' : 'Close navigation menu');
+      mobileNav.classList.toggle('show', !isExpanded);
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => {
+      mobileNav.classList.remove('show');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+    }));
+    document.addEventListener('keydown', event => {
+      if(event.key === 'Escape' && mobileNav.classList.contains('show')){
+        mobileNav.classList.remove('show');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation menu');
+        menuToggle.focus();
+      }
+    });
   </script>
 </body>
 </html>
